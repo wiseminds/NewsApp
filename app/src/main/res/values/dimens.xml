@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="heading_text_size">18sp</dimen>
+    <dimen name="body_text_size">14sp</dimen>
+    <dimen name="section_name_text_size">12sp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="image_size">100dp</dimen>
+    <dimen name="image_size_half">50dp</dimen>
+    <dimen name="padding_eight">8dp</dimen>
+    <dimen name="padding_four">4dp</dimen>
+    <dimen name="padding_two">2dp</dimen>
+</resources>
