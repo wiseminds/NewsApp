@@ -85,6 +85,7 @@ public class PoliticsNewsAdapter extends RecyclerView.Adapter<PoliticsNewsAdapte
         holder.mItem = mLatestNewsArray.get(position);
         holder.sectionNameView.setText(mLatestNewsArray.get(position).getSectionName());
         holder.urlTitle.setText(mLatestNewsArray.get(position).getWebTitle());
+        holder.publicationDate.setText(mLatestNewsArray.get(position).getmWebPublicationDate());
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,6 +164,7 @@ public class PoliticsNewsAdapter extends RecyclerView.Adapter<PoliticsNewsAdapte
         private News mItem;
         private View mView;
         private final TextView urlTitle;
+        private final TextView publicationDate;
         private final Button sectionNameView;
         private final LinearLayout politicsLayout;
 
@@ -172,6 +174,7 @@ public class PoliticsNewsAdapter extends RecyclerView.Adapter<PoliticsNewsAdapte
             urlTitle = (TextView) view.findViewById(R.id.politics_heading);
             sectionNameView = (Button) view.findViewById(R.id.politics_section_name);
             politicsLayout = (LinearLayout) view.findViewById(R.id.politics_layout);
+            publicationDate = (TextView) view.findViewById(R.id.politics_publication_date);
         }
     }
 }

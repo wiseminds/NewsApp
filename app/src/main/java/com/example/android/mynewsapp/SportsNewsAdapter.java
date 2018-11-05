@@ -107,6 +107,7 @@ public class SportsNewsAdapter extends RecyclerView.Adapter<SportsNewsAdapter.Vi
         super.onBindViewHolder(holder, position, payloads);
         holder.sectionNameView.setText(mLatestNewsArray.get(position).getSectionName());
         holder.urlTitle.setText(mLatestNewsArray.get(position).getWebTitle());
+        holder.publicationDate.setText(mLatestNewsArray.get(position).getmWebPublicationDate());
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,6 +161,7 @@ public class SportsNewsAdapter extends RecyclerView.Adapter<SportsNewsAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final View mView;
         private final TextView urlTitle;
+        private final TextView publicationDate;
         private final Button sectionNameView;
         private final LinearLayout sportsLayout;
         private News mItem;
@@ -168,6 +170,7 @@ public class SportsNewsAdapter extends RecyclerView.Adapter<SportsNewsAdapter.Vi
             super(view);
             mView = view;
             urlTitle = (TextView) view.findViewById(R.id.sports_heading);
+            publicationDate = (TextView) view.findViewById(R.id.sports_body);
             sectionNameView = (Button) view.findViewById(R.id.sports_section_name);
             sportsLayout = (LinearLayout) view.findViewById(R.id.sports_layout);
         }

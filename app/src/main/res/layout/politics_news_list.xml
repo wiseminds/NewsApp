@@ -6,8 +6,11 @@
     android:layout_height="wrap_content"
     android:divider="@color/list_divider_color"
     android:dividerPadding="@dimen/padding_two"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="@dimen/padding_eight"
+    android:paddingTop="@dimen/padding_eight"
+    android:paddingRight="@dimen/padding_eight"
+    android:paddingLeft="@dimen/padding_eight"
     android:showDividers="end">
 
     <Button
@@ -16,8 +19,6 @@
         android:layout_height="@dimen/image_size_half"
         android:fadingEdge="horizontal|vertical"
         android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:padding="@dimen/padding_four"
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="@dimen/section_name_text_size"
@@ -26,10 +27,9 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_eight">
+        android:paddingLeft="@dimen/padding_eight"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/politics_heading"
@@ -41,12 +41,10 @@
             android:textSize="@dimen/heading_text_size" />
 
         <TextView
-            android:id="@+id/politics_body"
+            android:id="@+id/politics_publication_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="cursive"
-            android:gravity="start"
-            android:text="Guardian.com"
             android:textColor="@color/colorText1"
             android:textSize="@dimen/body_text_size" />
 

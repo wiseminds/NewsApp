@@ -4,17 +4,18 @@
     android:id="@+id/tech_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="@dimen/padding_eight">
+    android:paddingTop="@dimen/padding_eight"
+    android:paddingRight="@dimen/padding_eight"
+    android:paddingLeft="@dimen/padding_eight">
 
     <Button
         android:id="@+id/tech_section_name"
         android:layout_width="@dimen/image_size_half"
-        android:layout_height="@dimen/image_size_half"
+        android:layout_height="wrap_content"
         android:fadingEdge="horizontal|vertical"
         android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:padding="@dimen/padding_four"
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="@dimen/section_name_text_size"
@@ -23,10 +24,9 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="@dimen/padding_eight">
+        android:paddingLeft="@dimen/padding_eight">
 
         <TextView
             android:id="@+id/tech_heading"
@@ -38,14 +38,11 @@
             android:textSize="@dimen/heading_text_size" />
 
         <TextView
-            android:id="@+id/tech_body"
+            android:id="@+id/tech_publication_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="cursive"
-            android:gravity="center_horizontal"
-            android:text="Guardian.com"
             android:textColor="@color/colorText1"
             android:textSize="@dimen/body_text_size" />
-
     </LinearLayout>
 </LinearLayout>

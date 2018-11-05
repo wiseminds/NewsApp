@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static android.R.attr.data;
 import static com.example.android.mynewsapp.NewsAsyncLoader.setURL;
 
 /**
@@ -134,14 +135,14 @@ public class PoliticsNewsFragment extends Fragment implements LoaderManager.Load
      */
     @Override
     public void onLoadFinished(Loader<ArrayList<News>> loader, ArrayList<News> data) {
-        if (data != null & data.size() != 0) {
+        if (data == null) {
+           emptyState = "Conection Timed out";
+        } else if (data.isEmpty()) {
+            emptyState = "No Internet Connection";
+        } else if (data != null & data.size() != 0) {
             emptyState = "";
             recyclerView.setAdapter(new PoliticsNewsAdapter(data, mListener, getContext()));
-            Log.v("Politics", "onLoadFinished  if " + data.get(6).getWebTitle());
-        } else if (data == null) {
-            emptyState = "No Internet Connection";
-        } else if (data.isEmpty()) {
-            emptyState = "Conection Timed out";
+            Log.v("Tech", "onLoadFinished  if " + data.get(6).getWebTitle());
         }
         setLoadStatus();
     }
@@ -156,7 +157,6 @@ public class PoliticsNewsFragment extends Fragment implements LoaderManager.Load
     @Override
     public void onLoaderReset(Loader<ArrayList<News>> loader) {
         Log.v("Politics", "onLoadReset");
-//        recyclerView.setAdapter(new PoliticsNewsAdapter(new ArrayList<News>()));
         progressBar.setVisibility(View.VISIBLE);
         setLoadStatus();
 

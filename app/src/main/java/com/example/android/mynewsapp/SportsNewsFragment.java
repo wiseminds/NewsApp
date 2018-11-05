@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static android.R.attr.data;
 import static com.example.android.mynewsapp.NewsAsyncLoader.setURL;
 
 /**
@@ -132,14 +133,14 @@ public class SportsNewsFragment extends Fragment implements LoaderManager.Loader
      */
     @Override
     public void onLoadFinished(Loader<ArrayList<News>> loader, ArrayList<News> data) {
-        if (data != null & data.size() != 0) {
+      if (data == null) {
+            emptyState = "Conection Timed out";
+        } else if (data.isEmpty()) {
+            emptyState = "No Internet Connection";
+        }  else  if (data != null & data.size() != 0) {
             emptyState = "";
             recyclerView.setAdapter(new SportsNewsAdapter(data, mListener, getContext()));
             Log.v("Sports", "onLoadFinished  if " + data.get(6).getWebTitle());
-        } else if (data == null) {
-            emptyState = "No Internet Connection";
-        } else if (data.isEmpty()) {
-            emptyState = "Conection Timed out";
         }
         setLoadStatus();
     }

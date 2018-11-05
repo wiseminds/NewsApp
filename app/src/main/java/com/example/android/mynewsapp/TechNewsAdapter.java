@@ -108,6 +108,7 @@ public class TechNewsAdapter extends RecyclerView.Adapter<TechNewsAdapter.ViewHo
         super.onBindViewHolder(holder, position, payloads);
         holder.urlTitle.setText(mLatestNewsArray.get(position).getWebTitle());
         holder.sectionNameView.setText(mLatestNewsArray.get(position).getSectionName());
+        holder.publicationDate.setText(mLatestNewsArray.get(position).getmWebPublicationDate());
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,6 +163,7 @@ public class TechNewsAdapter extends RecyclerView.Adapter<TechNewsAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView urlTitle;
         private final Button sectionNameView;
+        private final TextView publicationDate;
         private final LinearLayout techLayout;
         private News mItem;
         private View mView;
@@ -172,6 +174,7 @@ public class TechNewsAdapter extends RecyclerView.Adapter<TechNewsAdapter.ViewHo
             urlTitle = (TextView) view.findViewById(R.id.tech_heading);
             sectionNameView = (Button) view.findViewById(R.id.tech_section_name);
             techLayout = (LinearLayout) view.findViewById(R.id.tech_layout);
+            publicationDate = (TextView) view.findViewById(R.id.tech_publication_date);
         }
     }
 }

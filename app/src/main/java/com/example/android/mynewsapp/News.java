@@ -12,11 +12,14 @@ public class News {
     private String mSectionName;
     private String mWebTitle;
     private String mWebUrl;
+    private String mWebPublicationDate;
 
-    public News(String sectionName, String webTitle, String webUrl) {
+    public News(String sectionName, String webTitle, String webUrl, String webPublicationDate) {
         mSectionName = sectionName;
         mWebTitle = webTitle;
         mWebUrl = webUrl;
+       String[] dateTime = webPublicationDate.split("T");
+        mWebPublicationDate = "Guardian.com,-     Date: "+dateTime[0];
     }
 
     public String getSectionName() {
@@ -30,4 +33,5 @@ public class News {
     public String getWebUrl() {
         return mWebUrl;
     }
+    public String getmWebPublicationDate() {return mWebPublicationDate;}
 }

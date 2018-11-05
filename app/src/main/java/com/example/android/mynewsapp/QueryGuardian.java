@@ -2,6 +2,8 @@ package com.example.android.mynewsapp;
 
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -13,12 +15,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.UnknownServiceException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+
+import static java.security.AccessController.getContext;
 
 /**
  * {@link QueryGuardian} is a class to query the guardian site to get a JSON response
@@ -55,7 +58,8 @@ public final class QueryGuardian {
                     String sectionName = results.getString("sectionName");
                     String webTitle = results.getString("webTitle");
                     String webUrl = results.getString("webUrl");
-                    newsInstances.add(new News(sectionName, webTitle, webUrl));
+                    String webPublicationDate = results.getString("webPublicationDate");
+                    newsInstances.add(new News(sectionName, webTitle, webUrl, webPublicationDate));
                     Log.v("QueryGuardian", resultsArray.length() + " parsin json " + sectionName + "" + i);
 
                 }
@@ -73,14 +77,22 @@ public final class QueryGuardian {
      * the method returns null.
      */
 
-    public static String makeHttpRequest(URL url)
+    public static String makeHttpRequest(URL url, Context context)
             throws SocketTimeoutException, UnknownServiceException {
+
         String jsonResponse = "";
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+              context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo == null){
+            return "No INTERNET CONNECTION";
+        }
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
         try {
             /*
-             *{inputStream = context.getAssets().open("response.txt");}
+             *{ inputStream = context.getApplicationContext().getAssets().open("response.txt");}
              * use the above code to test the app if there is no internet connection
              * in the asset folder a sample JSON response in included for test purpose
              * so you have to comment out @param urlConnection.connect(),
@@ -90,8 +102,9 @@ public final class QueryGuardian {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.setReadTimeout(1000/*milliseconds*/);
-            urlConnection.setConnectTimeout(1500/*milliseconds*/);
+            urlConnection.setConnectTimeout(3000/*milliseconds*/);
             Log.v("http", " connect" + url);
+            if (networkInfo != null ) {
             urlConnection.connect();
             int responseCode = urlConnection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -99,7 +112,7 @@ public final class QueryGuardian {
                 inputStream = urlConnection.getInputStream();
                 Log.v("http", " read inputStream" + url);
                 jsonResponse = readFromStream(inputStream);
-            }
+            }}
         } catch (IOException e) {
             Log.v("http catch", " " + url, e);
             return null;
