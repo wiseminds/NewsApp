@@ -82,10 +82,10 @@ public final class QueryGuardian {
 
         String jsonResponse = "";
         ConnectivityManager connectivityManager = (ConnectivityManager)
-              context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
-        if (networkInfo == null){
+        if (networkInfo == null) {
             return "No INTERNET CONNECTION";
         }
         HttpURLConnection urlConnection = null;
@@ -104,15 +104,16 @@ public final class QueryGuardian {
             urlConnection.setReadTimeout(1000/*milliseconds*/);
             urlConnection.setConnectTimeout(3000/*milliseconds*/);
             Log.v("http", " connect" + url);
-            if (networkInfo != null ) {
-            urlConnection.connect();
-            int responseCode = urlConnection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                Log.v("http", " connected, get inputStream" + url);
-                inputStream = urlConnection.getInputStream();
-                Log.v("http", " read inputStream" + url);
-                jsonResponse = readFromStream(inputStream);
-            }}
+            if (networkInfo != null) {
+                urlConnection.connect();
+                int responseCode = urlConnection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    Log.v("http", " connected, get inputStream" + url);
+                    inputStream = urlConnection.getInputStream();
+                    Log.v("http", " read inputStream" + url);
+                    jsonResponse = readFromStream(inputStream);
+                }
+            }
         } catch (IOException e) {
             Log.v("http catch", " " + url, e);
             return null;

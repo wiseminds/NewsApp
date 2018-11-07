@@ -133,11 +133,11 @@ public class SportsNewsFragment extends Fragment implements LoaderManager.Loader
      */
     @Override
     public void onLoadFinished(Loader<ArrayList<News>> loader, ArrayList<News> data) {
-      if (data == null) {
+        if (data == null) {
             emptyState = "Conection Timed out";
         } else if (data.isEmpty()) {
             emptyState = "No Internet Connection";
-        }  else  if (data != null & data.size() != 0) {
+        } else if (data != null & data.size() != 0) {
             emptyState = "";
             recyclerView.setAdapter(new SportsNewsAdapter(data, mListener, getContext()));
             Log.v("Sports", "onLoadFinished  if " + data.get(6).getWebTitle());

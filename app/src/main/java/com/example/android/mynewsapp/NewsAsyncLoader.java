@@ -21,7 +21,8 @@ import static android.R.attr.y;
 public class NewsAsyncLoader extends
         android.support.v4.content.AsyncTaskLoader<ArrayList<News>> {
     private static URL url;
-    private static Context mContext ;
+    private static Context mContext;
+
     public NewsAsyncLoader(Context context) {
         super(context);
         mContext = context;
@@ -57,25 +58,26 @@ public class NewsAsyncLoader extends
         ArrayList<News> newsArrayList = new ArrayList<>();
         String jsonResponse;
 
-            try {
-                jsonResponse = QueryGuardian.makeHttpRequest(url, mContext);
-            } catch (SocketTimeoutException e) {
-                e.printStackTrace();
-                Log.v("QueryGuardian", "makeHttpRequest ", e);
-                return new ArrayList<News>();
-            } catch (UnknownServiceException e) {
-                e.printStackTrace();
-                Log.v("QueryGuardian", "protocol doesn't support input", e);
-                return new ArrayList<News>();
-            }
-            Log.v("QueryGuardian", "makeHttpRequest " + jsonResponse);
-            if (jsonResponse != null) {
-                if (jsonResponse=="No INTERNET CONNECTION"){return newsArrayList;
-                }else
+        try {
+            jsonResponse = QueryGuardian.makeHttpRequest(url, mContext);
+        } catch (SocketTimeoutException e) {
+            e.printStackTrace();
+            Log.v("QueryGuardian", "makeHttpRequest ", e);
+            return new ArrayList<News>();
+        } catch (UnknownServiceException e) {
+            e.printStackTrace();
+            Log.v("QueryGuardian", "protocol doesn't support input", e);
+            return new ArrayList<News>();
+        }
+        Log.v("QueryGuardian", "makeHttpRequest " + jsonResponse);
+        if (jsonResponse != null) {
+            if (jsonResponse == "No INTERNET CONNECTION") {
+                return newsArrayList;
+            } else
                 newsArrayList = QueryGuardian.extractNews(jsonResponse);
-            } else if (jsonResponse == null) {
-                newsArrayList = new ArrayList<News>();
-            }
+        } else if (jsonResponse == null) {
+            newsArrayList = new ArrayList<News>();
+        }
         return newsArrayList;
     }
 }

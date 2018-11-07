@@ -136,7 +136,7 @@ public class PoliticsNewsFragment extends Fragment implements LoaderManager.Load
     @Override
     public void onLoadFinished(Loader<ArrayList<News>> loader, ArrayList<News> data) {
         if (data == null) {
-           emptyState = "Conection Timed out";
+            emptyState = "Conection Timed out";
         } else if (data.isEmpty()) {
             emptyState = "No Internet Connection";
         } else if (data != null & data.size() != 0) {
